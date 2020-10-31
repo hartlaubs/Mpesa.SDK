@@ -97,13 +97,13 @@ PM> Install-Package Mpesa.SDK.AspNetCore
 
 ### Usage
 
-#### Add configuration to appsettings.json.  
-Only add configuration relevant to the interface you want to use.  
-Library consists of the following interfaces
+Library consists of the following interfaces  
 **ILipaNaMpesa** - StkPush and QueryStatus  
 **IC2B** - QueryBalance, QueryTransactionStatus, ReverseTransaction, RegisterUrl, SimulateTransaction  
 **IB2C** - QueryBalance, QueryTransactionStatus, ReverseTransaction, SendMoney  
 **IB2B** - To come soon  
+
+#### Add configuration to appsettings.json. Only add configuration relevant to the interface you want to use.  
 
 ```json
 {
