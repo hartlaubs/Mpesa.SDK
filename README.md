@@ -8,7 +8,7 @@ Mpesa.SDK Nuget Packages
 | Package Name | .NET Standard | .NET Core App |
 | ------------ | :-----------: | :-----------: |
 | **Main** |
-| [Mpesa.SDK][Mpesa.SDK.nuget] | [![NuGet Badge](https://buildstats.info/nuget/Mpesa.SDK)](https://www.nuget.org/packages/Mpesa.SDK) |
+| [Mpesa.SDK][Mpesa.SDK.1.0.0.nuget] | [![NuGet Badge](https://buildstats.info/nuget/Mpesa.SDK)](https://www.nuget.org/packages/Mpesa.SDK) |
 | **ASP.NET Core** |
 | [Mpesa.SDK.AspNetCore][Mpesa.SDK.AspNetCore.nuget] | [![NuGet Badge](https://buildstats.info/nuget/Mpesa.SDK.AspNetCore)](https://www.nuget.org/packages/Mpesa.SDK.AspNetCore) |
 
