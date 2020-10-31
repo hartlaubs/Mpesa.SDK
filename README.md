@@ -8,11 +8,11 @@ Mpesa.SDK Nuget Packages
 | Package Name | .NET Standard | .NET Core App | Version |
 | ------------ | :-----------: | :-----------: | :-----: |
 | **Main** |
-| [Mpesa.SDK](https://www.nuget.org/packages/Mpesa.SDK) | 2.0, 2.1 | [![NuGet Badge](https://buildstats.info/nuget/Mpesa.SDK)](https://www.nuget.org/packages/Mpesa.SDK) |
+| [Mpesa.SDK](https://www.nuget.org/packages/Mpesa.SDK) | 2.0, 2.1 | - | [![NuGet Badge](https://buildstats.info/nuget/Mpesa.SDK)](https://www.nuget.org/packages/Mpesa.SDK) |
 | **ASP.NET Core** |
 | [Mpesa.SDK.AspNetCore](https://www.nuget.org/packages/Mpesa.SDK.AspNetCore) | - | 3.1 | [![NuGet Badge](https://buildstats.info/nuget/Mpesa.SDK.AspNetCore)](https://www.nuget.org/packages/Mpesa.SDK.AspNetCore) |
 
-## .NET App
+## .NET Usage
 
 ### Installation
 
@@ -86,3 +86,70 @@ if (!stkQuery.Success)
 if (!b2c.Success)
   Console.WriteLine(b2c.Error.ErrorMessage);
  ```
+
+## ASP.NET Core Usage
+
+### Installation
+
+```
+PM> Install-Package Mpesa.SDK.AspNetCore
+```
+
+### Usage
+
+#### Add configuration to appsettings.json
+
+```json
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  },
+  "AllowedHosts": "*",
+  "Mpesa": {
+    "B2C": {
+      "ConsumerKey": "",
+      "ConsumerSecret": "",
+      "ShortCode": "",
+      "Initiator": "",
+      "InitiatorPassword": "",
+      "IsLive": false,
+      "ResultURL": "https://example.com/result",
+      "QueueTimeOutURL": "https://example.com/timeout"
+    },
+    "C2B": {
+      "ConsumerKey": "",
+      "ConsumerSecret": "",
+      "ShortCode": "",
+      "Initiator": "",
+      "InitiatorPassword": "",
+      "IsLive": false,
+      "ResultURL": "https://example.com/result",
+      "QueueTimeOutURL": "https://example.com/timeout"
+    },
+    "LipaNaMpesa": {
+      "ConsumerKey": "",
+      "ConsumerSecret": "",
+      "ShortCode": "",
+      "PassKey": "",
+      "IsLive": false,
+      "CallbackURL": "https://example.com/result"
+    }
+  }
+}
+```
+
+#### Add to Startup class
+
+```csharp
+services.AddMpesaSdk(Configuration);
+```
+
+Library consists of the following interfaces
+**ILipaNaMpesa** - StkPush and QueryStatus
+**IC2B** - QueryBalance, QueryTransactionStatus, ReverseTransaction, RegisterUrl, SimulateTransaction
+**IB2C** - QueryBalance, QueryTransactionStatus, ReverseTransaction, SendMoney
+**IB2B** - To come soon
