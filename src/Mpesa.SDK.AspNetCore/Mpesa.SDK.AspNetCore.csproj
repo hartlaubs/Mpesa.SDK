@@ -2,6 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Damurka</Authors>
+    <Company>Hartlaubs</Company>
+    <Copyright>Copyright 2020</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/hartlaubs/Mpesa.SDK</RepositoryUrl>
+    <RepositoryType>github</RepositoryType>
+    <PackageTags>mpesa;mobile money;safaricom;daraja;</PackageTags>
+    <Description>This is a M-PESA SDK to allow you to integrate Safaricom Daraja API for ASP.Net Core. It relies on Apesa.SDK</Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,10 +19,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Mpesa.SDK\Mpesa.SDK.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="B2B\" />
   </ItemGroup>
 
 </Project>

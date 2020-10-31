@@ -23,7 +23,7 @@ namespace WebSample.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var stk = await lnm.PushStk("254729855879", "50", "My Account");
+            var stk = await lnm.PushStk("254722000000", "50", "My Account");
             if (!stk.Success)
             {
                 _logger.LogError("Stk Error: @{stk}", stk.Error);

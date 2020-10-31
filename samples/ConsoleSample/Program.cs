@@ -19,7 +19,7 @@ namespace Mpesa.SDK.Test
                 ResultURL = ""
             };
 
-            var api = new MpesaApi("", "", options);
+            var api = new MpesaApi("<Consumer Key>", "<Consumer Secret>", options);
             var balance = await api.Account.QueryBalance();
             if (!balance.Success)
                 Console.WriteLine(balance.Error.ErrorMessage);
@@ -32,15 +32,15 @@ namespace Mpesa.SDK.Test
             if (!reverse.Success)
                 Console.WriteLine(reverse.Error.ErrorMessage);
 
-            var stkPush = await api.LipaNaMpesa.PushStk("254717774421", "100", "Home", "Home repairs");
+            var stkPush = await api.LipaNaMpesa.PushStk("254722000000", "100", "Home", "Home repairs");
             if (!stkPush.Success)
                 Console.WriteLine(stkPush.Error.ErrorMessage);
 
-            var stkQuery = await api.LipaNaMpesa.QueryStatus(/*"ws_CO_30102020004040298972"*/ stkPush.Data.CheckoutRequestID);
+            var stkQuery = await api.LipaNaMpesa.QueryStatus("ws_CO_30102020004040278972");
             if (!stkQuery.Success)
                 Console.WriteLine(stkQuery.Error.ErrorMessage);
 
-            var b2c = await api.B2CClient.SendMoney("254717774421", "1000");
+            var b2c = await api.B2CClient.SendMoney("254722000000", "1000");
             if (!b2c.Success)
                 Console.WriteLine(b2c.Error.ErrorMessage);
         }

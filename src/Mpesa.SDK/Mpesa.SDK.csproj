@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
@@ -9,7 +9,9 @@
     <Copyright>Copyright 2020</Copyright>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <LangVersion>8.0</LangVersion>
-    <Description>This is a simple Android M-PESA SDK to allow you to integrate Safaricom Daraja API</Description>
+    <Description>This is an M-PESA SDK to allow you to integrate Safaricom Daraja API</Description>
+    <RepositoryUrl>https://github.com/hartlaubs/Mpesa.SDK</RepositoryUrl>
+    <RepositoryType>github</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
