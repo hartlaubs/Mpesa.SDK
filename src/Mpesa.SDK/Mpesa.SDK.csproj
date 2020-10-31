@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+    <Authors>Damurka</Authors>
+    <Company>Hartlaubs</Company>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>mpesa;mobile money;safaricom;daraja</PackageTags>
+    <Copyright>Copyright 2020</Copyright>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <LangVersion>8.0</LangVersion>
+    <Description>This is a simple Android M-PESA SDK to allow you to integrate Safaricom Daraja API</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Certs\production.cer" />
+    <Content Remove="Certs\sandbox.cer" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Certs\production.cer" />
+    <EmbeddedResource Include="Certs\sandbox.cer" />
+  </ItemGroup>
+
+</Project>
