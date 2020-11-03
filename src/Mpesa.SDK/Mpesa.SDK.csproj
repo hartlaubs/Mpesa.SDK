@@ -12,6 +12,7 @@
     <Description>This is an M-PESA SDK to allow you to integrate Safaricom Daraja API</Description>
     <RepositoryUrl>https://github.com/hartlaubs/Mpesa.SDK</RepositoryUrl>
     <RepositoryType>github</RepositoryType>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

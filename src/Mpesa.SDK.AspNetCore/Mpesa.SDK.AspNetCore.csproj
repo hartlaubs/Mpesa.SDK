@@ -11,6 +11,9 @@
     <PackageTags>mpesa;mobile money;safaricom;daraja;</PackageTags>
     <Description>This is a M-PESA SDK to allow you to integrate Safaricom Daraja API for ASP.Net Core. It relies on Apesa.SDK</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.1</Version>
+    <PackageReleaseNotes>Webook support
+Secure Webook call by havin random string to each call</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

@@ -129,7 +129,7 @@ namespace WebSample.Controllers
             if (response.Success)
                 logger.LogInformation("C2B Payment Confirmation: {@Data}", response.Data);
 
-            return Ok(new { ResultCode = "00000000", ResponseDesc = "success" });
+            return Ok(new { ResultCode = 0, ResponseDesc = "success" });
         }
     }
 }
