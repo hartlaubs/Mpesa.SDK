@@ -55,5 +55,11 @@ namespace Mpesa.SDK
         /// <value>The response description.</value>
         [JsonProperty("ResponseDescription")]
         public string ResponseDescription { get; set; }
+
+        /// <summary>
+        /// Gets or Set the Request Id
+        /// </summary>
+        /// <value>App Generated Id used to track the response</value>
+        public string RequestId { get; set; }
     }
 }

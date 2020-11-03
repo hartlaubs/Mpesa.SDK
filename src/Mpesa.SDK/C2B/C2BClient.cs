@@ -32,11 +32,7 @@ namespace Mpesa.SDK.C2B
                 { "ValidationURL", validationUrl }
             });
 
-            var data = response.ToApiResponse();
-            if (!data.Success)
-                return new ApiResponse<Response> { Error = data.Error };
-
-            return new ApiResponse<Response> { Data = data.Data };
+            return response.ToApiResponse();
         }
 
         /// <summary>
@@ -60,11 +56,7 @@ namespace Mpesa.SDK.C2B
                 { "BillRefNumber", paymentRef }
             });
 
-            var data = response.ToApiResponse();
-            if (!data.Success)
-                return new ApiResponse<Response> { Error = data.Error };
-
-            return new ApiResponse<Response> { Data = data.Data };
+            return response.ToApiResponse();
         }
     }
 }

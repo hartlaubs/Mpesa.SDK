@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Damurka.Generator;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -26,11 +27,7 @@ namespace Mpesa.SDK.LipaNaMpesa
                 { "CheckoutRequestID", checkoutRequestId }
             });
 
-            var data = response.ToApiResponse();
-            if (!data.Success)
-                return new ApiResponse<QueryStkResponse> { Error = data.Error };
-
-            return new ApiResponse<QueryStkResponse> { Data = data.Data };
+            return response.ToApiResponse();
         }
 
         /// <summary>
@@ -43,6 +40,7 @@ namespace Mpesa.SDK.LipaNaMpesa
         /// <param name="transactionType">This is the transaction type that is used to identify the transaction when sending the request to M-Pesa</param>
         public async Task<ApiResponse<PushStkResponse>> PushStk(string phone, string amount, string account, string description = "Lipa na Mpesa Online", TransactionTypeEnum transactionType = TransactionTypeEnum.CustomerPayBillOnline)
         {
+            var requestId = ShortId.Generate(32);
             var response = await PostHttp<PushStkResponse>("/stkpush/v1/processrequest", new Dictionary<string, string>
             {
                 { "BusinessShortCode", Options.ShortCode },
@@ -53,16 +51,14 @@ namespace Mpesa.SDK.LipaNaMpesa
                 { "PartyA", phone },
                 { "PartyB", Options.ShortCode },
                 { "PhoneNumber", phone },
-                { "CallBackURL", Options.ResultURL },
+                { "CallBackURL", $"{Options.GetResultRL(requestId)}/lnm" },
                 { "AccountReference", account },
                 { "TransactionDesc", description }
             });
 
-            var data = response.ToApiResponse();
-            if (!data.Success)
-                return new ApiResponse<PushStkResponse> { Error = data.Error };
-
-            return new ApiResponse<PushStkResponse> { Data = data.Data };
+            var res = response.ToApiResponse();
+            if (res.Success) res.Data.RequestId = requestId;
+            return res;
         }
     }
 }

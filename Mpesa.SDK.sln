@@ -7,13 +7,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mpesa.SDK", "src\Mpesa.SDK\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleSample", "samples\ConsoleSample\ConsoleSample.csproj", "{C377B649-5751-43E0-A251-A7A932EE7C03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mpesa.SDK.AspNetCore", "src\Mpesa.SDK.AspNetCore\Mpesa.SDK.AspNetCore.csproj", "{65F1957F-FBBE-4CEB-A8B8-67130C250391}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mpesa.SDK.AspNetCore", "src\Mpesa.SDK.AspNetCore\Mpesa.SDK.AspNetCore.csproj", "{65F1957F-FBBE-4CEB-A8B8-67130C250391}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSample", "Samples\WebSample\WebSample.csproj", "{44D8F015-2B83-4162-849F-709072DB72CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebSample", "Samples\WebSample\WebSample.csproj", "{44D8F015-2B83-4162-849F-709072DB72CD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{8103B819-5534-4BA7-AED1-B8B2BBE23A8A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8735D774-0503-4ABF-AD9E-1A051DC8D876}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{9F42ACF9-1DE9-46F2-A2D9-B07A40BE43EE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mpesa.SDK.Test", "tests\Mpesa.SDK.Test\Mpesa.SDK.Test.csproj", "{302D4056-32A5-4064-992F-DE7C6AB77911}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Items", "Items", "{5FF1C1A1-6D4F-4A02-A9F1-4FEE632FD388}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +47,10 @@ Global
 		{44D8F015-2B83-4162-849F-709072DB72CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44D8F015-2B83-4162-849F-709072DB72CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44D8F015-2B83-4162-849F-709072DB72CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{302D4056-32A5-4064-992F-DE7C6AB77911}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{302D4056-32A5-4064-992F-DE7C6AB77911}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{302D4056-32A5-4064-992F-DE7C6AB77911}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{302D4056-32A5-4064-992F-DE7C6AB77911}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +60,7 @@ Global
 		{C377B649-5751-43E0-A251-A7A932EE7C03} = {8103B819-5534-4BA7-AED1-B8B2BBE23A8A}
 		{65F1957F-FBBE-4CEB-A8B8-67130C250391} = {8735D774-0503-4ABF-AD9E-1A051DC8D876}
 		{44D8F015-2B83-4162-849F-709072DB72CD} = {8103B819-5534-4BA7-AED1-B8B2BBE23A8A}
+		{302D4056-32A5-4064-992F-DE7C6AB77911} = {9F42ACF9-1DE9-46F2-A2D9-B07A40BE43EE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3D1ACA36-326C-4823-98A9-A618B6C761D3}

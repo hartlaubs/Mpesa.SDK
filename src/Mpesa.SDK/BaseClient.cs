@@ -21,49 +21,12 @@ namespace Mpesa.SDK
             _httpClientFactory = httpClientFactory;
         }
 
-        protected async Task<QuickResponse<T>> GetHttp<T>(string url) =>
-            await SendHttp<T>(() => new HttpRequestMessage(HttpMethod.Get, Options.BaseUri + url));
-
         protected async Task<QuickResponse<T>> PostHttp<T>(string url, Dictionary<string, string> parameters)
         {
             return await SendHttp<T>(() => new HttpRequestMessage(HttpMethod.Post, Options.BaseUri + url)
             {
                 Content = HttpClientHelpers.GetPostBody(parameters)
             });
-        }
-
-        protected async Task<QuickResponse<T>> PostHttp<T>(string url, object data)
-        {
-            return await SendHttp<T>(() => new HttpRequestMessage(HttpMethod.Post, Options.BaseUri + url)
-            {
-                Content = HttpClientHelpers.GetJsonBody(data)
-            });
-        }
-
-        private async Task<QuickResponse> SendHttp(Func<HttpRequestMessage> requestFunc)
-        {
-            try
-            {
-                var request = requestFunc();
-                await SetAuthHeader(request, false);
-
-                var response = await _httpClientFactory().SendAsync(request);
-                if (response.StatusCode == HttpStatusCode.Unauthorized)
-                {
-                    request = requestFunc();
-                    await SetAuthHeader(request, true);
-                    response = await _httpClientFactory().SendAsync(request);
-                }
-
-                return await QuickResponse.FromMessage(response);
-            }
-            catch (Exception ex)
-            {
-                return new QuickResponse
-                {
-                    Error = new ApiError { ErrorMessage = GetRecursiveErrorMessage(ex) }
-                };
-            }
         }
 
         private async Task<QuickResponse<T>> SendHttp<T>(Func<HttpRequestMessage> requestFunc)

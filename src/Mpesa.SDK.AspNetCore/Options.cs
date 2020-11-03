@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Mpesa.SDK.AspNetCore
+﻿namespace Mpesa.SDK.AspNetCore
 {
     public class Options
     {
@@ -12,7 +8,6 @@ namespace Mpesa.SDK.AspNetCore
         public string Initiator { get; set; }
         public string InitiatorPassword { get; set; }
         public bool IsLive { get; set; }
-        public string QueueTimeOutURL { get; set; }
-        public string ResultURL { get; set; }
+        public string CallbackURL { get; set; }
     }
 }

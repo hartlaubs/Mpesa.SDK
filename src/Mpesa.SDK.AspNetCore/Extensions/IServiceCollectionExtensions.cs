@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Mpesa.SDK.AspNetCore.Extensions;
 
 namespace Mpesa.SDK.AspNetCore
 {
@@ -10,6 +11,8 @@ namespace Mpesa.SDK.AspNetCore
             services.Configure<LipaNaMpesaOptions>(configuration.GetSection($"Mpesa:{LipaNaMpesaOptions.Name}"));
             services.Configure<C2BOptions>(configuration.GetSection($"Mpesa:{C2BOptions.Name}"));
             services.Configure<B2COptions>(configuration.GetSection($"Mpesa:{B2COptions.Name}"));
+
+            services.ConfigureOptions<MpesaConfigureOptions>();
 
             services.AddScoped<ILipaNaMpesa, LipaNaMpesa>();
             services.AddScoped<IC2B, C2B>();

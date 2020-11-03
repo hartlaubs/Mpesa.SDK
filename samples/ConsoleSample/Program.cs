@@ -10,16 +10,17 @@ namespace Mpesa.SDK.Test
         {
             var options = new MpesaApiOptions
             {
-                ShortCode = "",
-                Initiator = "",
-                InitiatorPassword = "",
-                PassKey = "",
+                ShortCode = "600111",
+                Initiator = "testapi111",
+                InitiatorPassword = "Safaricom111!",
+                PassKey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919",
                 IsLive = true,
-                QueueTimeOutURL = "",
-                ResultURL = ""
+                QueueTimeoutURL = "https://41ed377c8e62.ngrok.io/webhoo",
+                ResultURL = "https://41ed377c8e62.ngrok.io/result"
             };
 
-            var api = new MpesaApi("<Consumer Key>", "<Consumer Secret>", options);
+            var api = new MpesaApi("W77IT5mNOnBwkUwWhNxAKPS61uZur3pj", "qGkYG0ZUkfXFIRZE", options);
+
             var balance = await api.Account.QueryBalance();
             if (!balance.Success)
                 Console.WriteLine(balance.Error.ErrorMessage);

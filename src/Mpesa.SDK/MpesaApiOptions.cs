@@ -14,7 +14,7 @@ namespace Mpesa.SDK
         public string InitiatorPassword { get; set; }
         public string PassKey { get; set; }
         public bool IsLive { get; set; }
-        public string QueueTimeOutURL { get; set; }
+        public string QueueTimeoutURL { get; set; }
         public string ResultURL { get; set; }
     }
 
@@ -31,7 +31,7 @@ namespace Mpesa.SDK
                 InitiatorPassword = options.InitiatorPassword,
                 PassKey = options.PassKey,
                 IsLive = options.IsLive,
-                QueueTimeOutURL = options.QueueTimeOutURL,
+                QueueTimeoutURL = options.QueueTimeoutURL,
                 ResultURL = options.ResultURL
             };
         }
@@ -41,6 +41,23 @@ namespace Mpesa.SDK
         public string SecurityCredential => Encrypt(InitiatorPassword);
         public string EncodedPassword => Convert.ToBase64String(Encoding.UTF8.GetBytes($"{ShortCode}{PassKey}{Timestamp}"));
         public string Timestamp => DateTime.Now.ToString("yyyyMMddhhmmss");
+
+        public string GetResultRL(string requestId)
+        {
+            if (string.IsNullOrWhiteSpace(requestId))
+                return ResultURL;
+
+            return $"{ResultURL}/{requestId}";
+        }
+
+        public string GetQueueTimeoutURL(string requestId)
+        {
+            if (string.IsNullOrWhiteSpace(requestId))
+                return QueueTimeoutURL;
+
+            return $"{QueueTimeoutURL}/{requestId}";
+        }
+
 
         private string Encrypt(string password)
         {

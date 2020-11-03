@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Damurka.Generator;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -25,6 +26,7 @@ namespace Mpesa.SDK.B2C
         /// <param name="occasion">Occasion</param>
         public async Task<ApiResponse<Response>> SendMoney(string phone, string amount, B2CCommandIdEnum commandId = B2CCommandIdEnum.SalaryPayment, string comment = "B2C Payment", string occasion = "B2C Payment")
         {
+            var requestId = ShortId.Generate(32);
             var response = await PostHttp<Response>("/b2c/v1/paymentrequest", new Dictionary<string, string>
             {
                 { "InitiatorName", Options.Initiator },
@@ -35,15 +37,13 @@ namespace Mpesa.SDK.B2C
                 { "PartyB", phone },
                 { "Remarks", comment },
                 { "Occassion", occasion },
-                { "QueueTimeOutURL", Options.QueueTimeOutURL },
-                { "ResultURL", Options.ResultURL }
+                { "QueueTimeOutURL", $"{Options.GetQueueTimeoutURL(requestId)}/b2c" },
+                { "ResultURL", $"{Options.GetResultRL(requestId)}/b2c" },
             });
 
-            var data = response.ToApiResponse();
-            if (!data.Success)
-                return new ApiResponse<Response> { Error = data.Error };
-
-            return new ApiResponse<Response> { Data = data.Data };
+            var res = response.ToApiResponse();
+            if (res.Success) res.Data.RequestId = requestId;
+            return res;
         }
     }
 }

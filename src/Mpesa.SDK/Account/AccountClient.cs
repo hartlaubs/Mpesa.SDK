@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Damurka.Generator;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -26,6 +27,8 @@ namespace Mpesa.SDK.Account
             if (identifierType == IdentifierTypeEnum.MSISDN)
                 throw new Exception("SDK does not support MSISDN");
 
+            var requestId = ShortId.Generate(32);
+
             var response = await PostHttp<Response>("/accountbalance/v1/query", new Dictionary<string, string>
             {
                 { "Initiator", Options.Initiator },
@@ -34,15 +37,13 @@ namespace Mpesa.SDK.Account
                 { "PartyA", Options.ShortCode },
                 { "IdentifierType", identifierType.ToString("D") },
                 { "Remarks", remarks },
-                { "QueueTimeOutURL", Options.QueueTimeOutURL },
-                { "ResultURL", Options.ResultURL }
+                { "QueueTimeOutURL", $"{Options.GetQueueTimeoutURL(requestId)}/balance" },
+                { "ResultURL", $"{Options.GetResultRL(requestId)}/balance" },
             });
 
-            var data = response.ToApiResponse();
-            if (!data.Success)
-                return new ApiResponse<Response> { Error = data.Error };
-
-            return new ApiResponse<Response> { Data = data.Data };
+            var res = response.ToApiResponse();
+            if (res.Success) res.Data.RequestId = requestId;
+            return res;
         }
 
         /// <summary>
@@ -58,6 +59,8 @@ namespace Mpesa.SDK.Account
             if (IdentifierTypeEnum.MSISDN == identifierType && string.IsNullOrEmpty(phone))
                 throw new ArgumentNullException("Phone cannot be null", nameof(phone));
 
+            var requestId = ShortId.Generate(32);
+
             var response = await PostHttp<Response>("/transactionstatus/v1/query", new Dictionary<string, string>
             {
                 { "Initiator", Options.Initiator },
@@ -66,17 +69,15 @@ namespace Mpesa.SDK.Account
                 { "TransactionID", transactionId },
                 { "PartyA", identifierType == IdentifierTypeEnum.MSISDN ? phone : Options.ShortCode },
                 { "IdentifierType", identifierType.ToString("D") },
-                { "QueueTimeOutURL", Options.QueueTimeOutURL },
-                { "ResultURL", Options.ResultURL },
+                { "QueueTimeOutURL", $"{ Options.GetQueueTimeoutURL(requestId)}/status" },
+                { "ResultURL", $"{ Options.GetResultRL(requestId)}/status" },
                 { "Remarks", remarks },
                 { "Occasion", occasion }
             });
 
-            var data = response.ToApiResponse();
-            if (!data.Success)
-                return new ApiResponse<Response> { Error = data.Error };
-
-            return new ApiResponse<Response> { Data = data.Data };
+            var res = response.ToApiResponse();
+            if (res.Success) res.Data.RequestId = requestId;
+            return res;
         }
 
         /// <summary>
@@ -88,6 +89,7 @@ namespace Mpesa.SDK.Account
         /// <param name="occassion">Occasion</param>
         public async Task<ApiResponse<Response>> RequestReversal(string transactionId, string amount, string remarks = "Reversal", string occassion = "Reversal")
         {
+            var requestId = ShortId.Generate(32);
             var response = await PostHttp<Response>("/reversal/v1/request", new Dictionary<string, string>
             {
                 { "Initiator", Options.Initiator },
@@ -99,15 +101,13 @@ namespace Mpesa.SDK.Account
                 { "RecieverIdentifierType", "11" },
                 { "Remarks", remarks },
                 { "Occasion", occassion },
-                { "QueueTimeOutURL", Options.QueueTimeOutURL },
-                { "ResultURL", Options.ResultURL }
+                { "QueueTimeOutURL", $"{ Options.GetQueueTimeoutURL(requestId)}/reversal" },
+                { "ResultURL", $"{ Options.GetResultRL(requestId)}/reversal" },
             });
 
-            var data = response.ToApiResponse();
-            if (!data.Success)
-                return new ApiResponse<Response> { Error = data.Error };
-
-            return new ApiResponse<Response> { Data = data.Data };
+            var res = response.ToApiResponse();
+            if (res.Success) res.Data.RequestId = requestId;
+            return res;
         }
     }
 }

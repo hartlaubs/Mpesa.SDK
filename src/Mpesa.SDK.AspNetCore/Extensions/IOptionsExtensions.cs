@@ -21,8 +21,8 @@
                 Initiator = options.Initiator,
                 InitiatorPassword = options.InitiatorPassword,
                 IsLive = options.IsLive,
-                ResultURL = options.ResultURL,
-                QueueTimeOutURL = options.QueueTimeOutURL
+                ResultURL = options.CallbackURL,
+                QueueTimeoutURL = options.CallbackURL
             };
         }
     }
